@@ -5,21 +5,6 @@ This project automates valuation workflows, financial management, report generat
 
 ---
 
-## Table of Contents
-- [Introduction](#-introduction)
-- [Objectives](#-objectives)
-- [System Modules](#-system-modules)
-- [Software Stack](#-software-stack)
-- [System Features](#-system-features)
-- [Security Measures](#-security-measures)
-- [Uniqueness](#-uniqueness)
-- [Future Enhancements](#-future-enhancements)
-- [Acknowledgement](#-acknowledgement)
-- [Contributors](#-contributors)
-- [License](#-license)
-
----
-
 ## Introduction
 This project is developed under the course module **“IS Project for Community”** offered by the  
 **Faculty of Computing, Sabaragamuwa University of Sri Lanka**, under the **Computing and Information Systems** degree program.
