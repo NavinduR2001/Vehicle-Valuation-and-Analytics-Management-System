@@ -36,22 +36,45 @@ function Navbar() {
   ];
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box sx={{ textAlign: 'center' }}>
       <List>
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton 
+              sx={{ textAlign: 'center' }}
+              onClick={handleDrawerToggle}
+            >
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: 'center',backgroundColor:'#990000', color:'#fff',margin:'20px 60px',borderRadius:'8px', py:0.5}}>
+          <ListItemButton 
+            sx={{ 
+              textAlign: 'center',
+              backgroundColor:'#990000', 
+              color:'#fff',
+              margin:'20px 60px',
+              borderRadius:'8px', 
+              py:0.5
+            }}
+            onClick={handleDrawerToggle}
+          >
             <ListItemText primary="Login" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: 'center',backgroundColor:'#990000', color:'#fff',margin:'0px 60px',borderRadius:'8px', py:0.5}}>
+          <ListItemButton 
+            sx={{ 
+              textAlign: 'center',
+              backgroundColor:'#990000', 
+              color:'#fff',
+              margin:'0px 60px',
+              borderRadius:'8px', 
+              py:0.5
+            }}
+            onClick={handleDrawerToggle}
+          >
             <ListItemText primary="Register" />
           </ListItemButton>
         </ListItem>
