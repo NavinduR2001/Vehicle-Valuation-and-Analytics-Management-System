@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
+import Valuations from './Pages/Manager/valuations';
 
 // Create a theme
 const theme = createTheme({
@@ -29,34 +30,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/valuations" element={<Valuations />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
 }
 
-export default App;
-
-import React from 'react'
-
-import './App.css'
-import Navbar from './components/navbar/Navbar'
-import Footer from './components/footer/Footer'
-
-function App() {
- 
-
-  return (
-    <>
-    <Navbar/>
-    
-    <h1>Vehicle Valuation and Analytics Management System</h1>
-
-    <Footer/>
-     
-    </>
-  )
-}
 
 export default App
 
