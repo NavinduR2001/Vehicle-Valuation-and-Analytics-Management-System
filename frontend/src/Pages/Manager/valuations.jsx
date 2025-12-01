@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
-import SidebarMana from '../../Components/sidebarmanager/SidebarMana.jsx';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
-  Box,
-  Typography,
-} from '@mui/material';
-
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Typography, TextField } from '@mui/material';
+import AdminSlidebar from '../../Components/admin-slidebar/AdminSlideBar.jsx';
 
 const valuations = () => {
   const [selectedValuation, setSelectedValuation] = useState(null);
 
   const menuItems = ['Dashboard', 'Valuations', 'Reports', 'Settings'];
+  const adminMenuItems = ['Admin Dashboard', 'User Management', 'System Logs', 'Settings'];
 
   const valuationsData = [
     {
@@ -59,8 +48,11 @@ const valuations = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <SidebarMana menuItems={menuItems} />
-      <Box sx={{ flexGrow: 1, padding: '20px' }}>
+      <Box sx={{ width: '250px', flexShrink: 0 }}>
+        <AdminSlidebar menuItems={menuItems} adminMenuItems={adminMenuItems} />
+      </Box>
+    
+      <Box sx={{ flexGrow: 1, padding: '20px', overflowX: 'auto' }}>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -70,7 +62,7 @@ const valuations = () => {
                 <TableCell>Company</TableCell>
                 <TableCell>User Name</TableCell>
                 <TableCell>Model</TableCell>
-                <TableCell sx={{paddingLeft:'100px'}}>Action</TableCell>
+                <TableCell sx={{ paddingLeft: '100px' }}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody sx={{ bgcolor: '#8d8888ff' }}>
@@ -98,12 +90,12 @@ const valuations = () => {
                       Approve
                     </Button>
                     <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => handleRejectClick(valuation)}
-                        sx={{ marginLeft: '10px' }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => handleRejectClick(valuation)}
+                      sx={{ marginLeft: '10px' }}
                     >
-                        Reject
+                      Reject
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -114,41 +106,49 @@ const valuations = () => {
 
         {selectedValuation && (
           <Paper sx={{ padding: '20px', marginTop: '20px', bgcolor: '#8d8888ff' }}>
-            <TableContainer>
-                <TableBody>
-                    <TableRow>
-                        <TableCell>
-                             <Typography><strong>Reg No:</strong> {selectedValuation.details.regNo}</Typography>
-                             <Typography><strong>Make:</strong> {selectedValuation.details.make}</Typography>
-                             <Typography><strong>Model:</strong> {selectedValuation.details.model}</Typography>
-                             <Typography><strong>Chassis No:</strong> {selectedValuation.details.chassisNo}</Typography>
-                             <Typography><strong>Engine CC:</strong> {selectedValuation.details.engineCC}</Typography>
-                        </TableCell>
-                        <TableCell>
-                             <Typography><strong>Inspection Date:</strong> {selectedValuation.details.inspectionDate}</Typography>
-                             <Typography><strong>Inspection Place:</strong> {selectedValuation.details.inspectionPlace}</Typography>
-                             <Typography><strong>Engine No:</strong> {selectedValuation.details.engineNo}</Typography>
-                             <Typography><strong>YOM:</strong> {selectedValuation.details.yom}</Typography>
-                             <Typography><strong>Fuel Type:</strong> {selectedValuation.details.fuelType}</Typography>
-
-                        </TableCell>
-                        <TableCell>
-                             <Button
-                             variant="contained"
-                             color="secondary"
-                             onClick={handleHideClick}
-                             sx={{ marginTop: '20px' }}
-                            >
-                                Hide
-                             </Button>
-
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
-            </TableContainer>
-          
-            
-          
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+              <Box sx={{ flex: '1 1 300px' }}>
+                <Typography><strong>Reg No:</strong> {selectedValuation.details.regNo}</Typography>
+                <Typography><strong>Assest Type:</strong> {selectedValuation.details.assetType}</Typography>                
+                <Typography><strong>Make:</strong> {selectedValuation.details.make}</Typography>
+                <Typography><strong>Model:</strong> {selectedValuation.details.model}</Typography>
+                <Typography><strong>Engine No:</strong> {selectedValuation.details.engineNo}</Typography>
+                <Typography><strong>Chassis No:</strong> {selectedValuation.details.chassisNo}</Typography>
+              </Box>
+              <Box sx={{ flex: '1 1 300px' }}>
+                <Typography><strong>Inspection Date:</strong> {selectedValuation.details.inspectionDate}</Typography>
+                <Typography><strong>Inspection Place:</strong> {selectedValuation.details.inspectionPlace}</Typography>
+                <Typography><strong>First Registration Date:</strong> {selectedValuation.details.firstRegistrationDate}</Typography>
+                <Typography><strong>Engine CC:</strong> {selectedValuation.details.engineCC}</Typography>
+                <Typography><strong>YOM:</strong> {selectedValuation.details.yom}</Typography>
+                <Typography><strong>Fuel Type:</strong> {selectedValuation.details.fuelType}</Typography>
+              </Box>
+                <Box sx={{ flex: '1 1 300px' }}>
+                <Typography><strong>Date:</strong> {selectedValuation.details.inspectionDate}</Typography>
+                <Typography><strong>Company:</strong> {selectedValuation.details.inspectionPlace}</Typography>
+                <Typography><strong>User:</strong> {selectedValuation.details.firstRegistrationDate}</Typography>
+                <Box sx={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+                 <TextField label="Add Valuation Price (Rs)" variant="outlined" sx={{ flex: '1'}} />
+                 <Button variant="contained" color="primary">Add Price</Button>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                  <TextField label="Add Message" variant="outlined" sx={{ flex: '1' }} />
+                 <Button variant="contained" color="primary">Send Message</Button>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+                 <Button variant="contained" color="secondary" onClick={handleHideClick}>
+                  Hide
+                 </Button>
+                 <Button variant="contained" color="success" onClick={() => handleApproveClick(selectedValuation)}>
+                  Approve
+                  </Button>
+                  <Button variant="contained" color="error" onClick={() => handleRejectClick(selectedValuation)}>
+                  Reject
+                </Button>
+                </Box>
+                </Box>
+              </Box>
+              
            
           </Paper>
         )}
