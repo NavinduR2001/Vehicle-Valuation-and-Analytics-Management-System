@@ -1,11 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { Box, Button, Drawer, Stack, Toolbar, Typography } from '@mui/material'
 import { Logo } from '../../assets/assets'
 import LogoutIcon from '@mui/icons-material/Logout';
 
-function AdminSlideBar() {
-
-const [activeButton, setActiveButton] = useState('Valuation Summary');
+function AdminSlideBar({activeButton,setActiveButton}) {
 
 const handleClick=(buttonName) => {
   setActiveButton(buttonName);
