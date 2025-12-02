@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Typography, TextField } from '@mui/material';
 import AdminSlidebar from '../../Components/admin-slidebar/AdminSlideBar.jsx';
+import Frame12  from '../../assets/img/Frame12.png';
 
 const valuations = () => {
   const [selectedValuation, setSelectedValuation] = useState(null);
@@ -114,6 +115,10 @@ const valuations = () => {
                 <Typography><strong>Model:</strong> {selectedValuation.details.model}</Typography>
                 <Typography><strong>Engine No:</strong> {selectedValuation.details.engineNo}</Typography>
                 <Typography><strong>Chassis No:</strong> {selectedValuation.details.chassisNo}</Typography>
+                 <Box sx={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                   <Typography><img src={Frame12} width={150} alt="" /></Typography>
+                    <Typography><img src={Frame12} width={150} alt="" /></Typography>
+                 </Box>  
               </Box>
               <Box sx={{ flex: '1 1 300px' }}>
                 <Typography><strong>Inspection Date:</strong> {selectedValuation.details.inspectionDate}</Typography>
@@ -122,6 +127,10 @@ const valuations = () => {
                 <Typography><strong>Engine CC:</strong> {selectedValuation.details.engineCC}</Typography>
                 <Typography><strong>YOM:</strong> {selectedValuation.details.yom}</Typography>
                 <Typography><strong>Fuel Type:</strong> {selectedValuation.details.fuelType}</Typography>
+                <Box sx={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                   <Typography><img src={Frame12} width={150} alt="" /></Typography>
+                    <Typography><img src={Frame12} width={150} alt="" /></Typography>
+                 </Box>  
               </Box>
                 <Box sx={{ flex: '1 1 300px' }}>
                 <Typography><strong>Date:</strong> {selectedValuation.details.inspectionDate}</Typography>
