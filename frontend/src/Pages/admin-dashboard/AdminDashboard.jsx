@@ -5,8 +5,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import { Box, Typography, Select, MenuItem, TextField, Stack } from '@mui/material'
+import { Box, Typography, Select, MenuItem, TextField, Stack,Button } from '@mui/material'
 import AvailableTable from '../../components/admin-dashboard-components/AvailableTable';
+import HistoryTable from '../../components/admin-dashboard-components/HistoryTable';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 function AdminDashboard() {
@@ -209,7 +212,45 @@ function AdminDashboard() {
         <Typography variant="h4" gutterBottom sx={{color:'#990000', fontWeight:'bold'}}>
           Valuation History
         </Typography>
+         <LocalizationProvider dateAdapter={AdapterDayjs}>
+      < Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+        
+        {/* Quick Options */}
+        <Select sx={{ minWidth: 180 }} value={quickRange} onChange={(e) => handleQuickChange(e.target.value)}>
+          <MenuItem value="last7">Last 7 Days</MenuItem>
+          <MenuItem value="last30">Last 30 Days</MenuItem>
+          <MenuItem value="today">Today</MenuItem>
+          <MenuItem value="thisMonth">This Month</MenuItem>
+          <MenuItem value="custom">Custom Range</MenuItem>
+        </Select>
 
+        {/* Start Date Picker */}
+        <DatePicker
+          label="Start"
+          value={startDate}
+          onChange={(newValue) => setStartDate(newValue)}
+          disabled={quickRange !== "custom"}
+          renderInput={(params) => <TextField {...params} />}
+        />
+
+        {/* End Date Picker */}
+        <DatePicker
+          label="End"
+          value={endDate}
+          onChange={(newValue) => setEndDate(newValue)}
+          disabled={quickRange !== "custom"}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </Box>
+    </LocalizationProvider>
+        </Box>
+
+        <Box sx={{ width: '100%', bgcolor: '#ffffff', mt: 4, height:'100%', borderRadius: 2, boxShadow: 2 }}>
+          <HistoryTable />
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+          <Button variant="contained" startIcon={<ArrowBackIcon /> }>Previous</Button>
+          <Button variant="contained" endIcon={<ArrowForwardIcon />}>Next</Button>
         </Box>
         </Box>
 

@@ -17,66 +17,89 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
+import { HeroImg } from "../../assets/assets";
+
 
 const Home = () => {
+
   return (
     
-    <Box sx={{ bgcolor: "#fff", color: "#000", fontFamily: "Poppins, sans-serif", m: 0, p: 0 }}>
+    <Box sx={{ bgcolor: "#fff", color: "#000", fontFamily: "Poppins, sans-serif", height: "100vh", m: 0, p: 0 ,overflowX:'hidden'}}>
       <Navbar/>
       {/* ===== HEADER SECTION ===== */}
-      <Box sx={{ position: "relative", overflow: "visible", height: "800px" }}>
-        <Container maxWidth="lg">
-          <Grid container spacing={0} alignItems="center" >
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{
-                py: { xs: 6, md: 12 },
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                minHeight: { md: "80vh" },
-                marginTop: { xs: 10, md: 5 }
-              }}
-            >
-              <Typography variant="h3" fontWeight={760}>
+      <Box sx={{ position: "relative", overflow: "visible", height: "100%" }}>
+        <Container maxWidth="xl" sx={{ py:0 , display: "flex", flexDirection:{md: "row", xs: "column"}, alignItems: "center",justifyContent: "space-between", height: "100%",}}>
+         
+            
+              <Box sx={{ zIndex: 2, maxWidth: { md: "50%", xs: "100%" }, textAlign: { md: "left", xs: "center" } , mb: { xs: 14, md: 0 },}}>
+              <Typography variant="h2"  fontWeight={760}>
                 Welcome to
               </Typography>
-              <Typography variant="h2" fontWeight={800} color="#990000" sx={{ my: 1 }} pt={0}>
+              <Typography   color="#990000" sx={{ mb: 1,mx:0, fontWeight: 900,fontSize: { md: "5rem", xs: "3rem" } }} >
                 Ravan Auto Care
               </Typography>
-              <Typography variant="h4" fontWeight={500} sx={{ mb: 2 }}>
+              <Typography variant="h4" fontWeight={500} sx={{ mb: 1 }}>
                 Vehicle Valuation Portal
               </Typography>
               <Typography variant="h5" sx={{ mb: 3, pt: 2 }} fontWeight={300}>
-                <span style={{ color: "#990000", fontWeight: 300 }}>Accurate </span>
-                <span style={{ fontWeight: 300 }}>Vehicle Valuation.</span>
+                <span style={{ color: "#990000", fontWeight: 200 }}>Accurate </span>
+                <span style={{ fontWeight: 200 }}>Vehicle Valuation.</span>
                 <br />
-                <span style={{ color: "#990000", fontWeight: 300 }}>Smarter </span><span style={{ fontWeight: 300 }}>Decisions.</span>
+                <span style={{ color: "#990000", fontWeight: 200 }}>Smarter </span><span style={{ fontWeight: 200 }}>Decisions.</span>
               </Typography>
-              <Button variant="contained" color="error" sx={{ borderRadius: 2, width: 220, height: 50 }}>
+
+              <Button variant="contained"  sx={{ borderRadius: 2, width: 220, height: 50, fontSize: 18, backgroundColor: '#990000', '&:hover': { backgroundColor: '#770000' } }}>
                 GET VALUATION
               </Button>
-            </Grid>
-          </Grid>
+              </Box>
+              <Box 
+              component="img"
+              src={HeroImg}
+              alt="Hero Image"
+              display={{ xs: "none", md: "block" }}
+              sx={{ width: "800px", height: "auto",zIndex:5 }}
+              >
+                
+              </Box>
+
+         
         </Container>
 
         {/* full-bleed image positioned at the right edge of the viewport */}
         <Box
-          component="img"
-          src={Frame12}
-          alt="car"
-          sx={{
-            position: "absolute",
-            right: 0,
-            top: "45%",
-            transform: "translateY(-50%)",
-            width: { md: "auto", xs: "75vw" },
-            height: "100%",
-            pointerEvents: "none",
-          }}
+          component="div"
+          backgroundColor="black"
+          display={{ xs: "none", md: "block" }}
+          sx={{overflowX:'hidden'}}
+        
         />
+        <Box
+        sx={{
+          backgroundColor:'#B2B2B2',
+          width:'60%',
+          height:'60%',
+          position:'absolute',
+          right:'-450px',
+          top:'100px',
+          rotate:'-20deg',
+          borderRadius:'160px',
+          zIndex:3,
+          display: { xs: "none", md: "block" }
+        }}></Box>
+        <Box
+        sx={{
+          backgroundColor:'#7E7E7E',
+          width:'60%',
+          height:'60%',
+          position:'absolute',
+          right:'-610px',
+          top:'100px',
+          rotate:'-27deg',
+          borderRadius:'160px',
+          zIndex:4,
+          display: { xs: "none", md: "block" }
+
+        }}></Box>
     </Box>
    
 
@@ -135,7 +158,7 @@ const Home = () => {
            spacing={8}
           justifyContent="center"
           alignItems="stretch"
-          wrap="nowrap"
+          
      
             >
           {[
@@ -282,20 +305,20 @@ const Home = () => {
             Contact
           </Typography>
           <Grid container spacing={0} justifyContent="center">
-            <Grid item xs={12} md={6} width={700}>
+            <Grid item xs={12} md={6} width={800}>
               <iframe
                 title="map"
                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31672.26833157108!2d80.66346045!3d6.66234765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3e8a1d0e7c2e3%3A0x7e247cbccfbbf4df!2sBalangoda!5e0!3m2!1sen!2slk!4v1700000000000"
 
                 width="100%"
-                height="300"
+                height="300px"
                 style={{ border: 0, borderRadius: "0" }}
                 loading="lazy"
                 allowFullScreen
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box sx={{ bgcolor: "#990000", borderRadius: 0, p: 2, height: '98%' }}>
+              <Box sx={{ bgcolor: "#990000", borderRadius: 0, p: 2, height: '300px' }}>
           <Typography
             variant="h6"
             color="#fff"

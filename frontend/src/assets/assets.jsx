@@ -7,7 +7,8 @@ import Service3 from "./img/Service3.png";
 import Car from "./img/Frame15.png";
 import Logo from './img/bg clear white font.png'
 import LogoNew from './img/Logo.png'
+import ProfileImage from './profile images/pro-image.jpg';
+import HeroImg from './img/HeroImage.png';
 
 
-export { Frame12, Service1, Service2, Service3, Car, Logo, LogoNew  };
-
+export { Frame12, Service1, Service2, Service3, Car, Logo, LogoNew, ProfileImage, HeroImg  };
