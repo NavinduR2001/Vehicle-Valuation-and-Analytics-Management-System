@@ -259,7 +259,81 @@ const NewValuation = () => {
 
       {loading && <LinearProgress sx={{ mb: 2, bgcolor: 'rgba(153,0,0,0.08)', '& .MuiLinearProgress-bar': { bgcolor: '#990000' } }} />}
 
-      
+      <form onSubmit={handleSubmit}>
+        {/* Vehicle Details Card */}
+        <Box sx={cardSx}>
+          <Typography variant="h6" fontWeight={700} color="#0f172a" mb={3} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+            Vehicle Details
+          </Typography>
+
+          <Grid container spacing={2.5} sx={{ width: '100%', justifyContent: 'space-between' }}>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="registrationNo" label="Registration Number *" value={form.registrationNo} onChange={handleChange} required sx={inputSx} placeholder="e.g. ABC-1234" />
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1, minWidth: 200 }}>
+              <TextField fullWidth select name="assetType" label="Asset Type *" value={form.assetType} onChange={handleChange} required sx={inputSx} SelectProps={menuPaperSx}>
+                {ASSET_TYPES.map((t) => <MenuItem key={t} value={t} sx={{ color: '#0f172a', bgcolor: '#ffffff', '&:hover': { bgcolor: 'rgba(15,23,42,0.04)' } }}>{t}</MenuItem>)}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="make" label="Make *" value={form.make} onChange={handleChange} required sx={inputSx} placeholder="e.g. Toyota" />
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="model" label="Model *" value={form.model} onChange={handleChange} required sx={inputSx} placeholder="e.g. Corolla" />
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="engineNo" label="Engine Number *" value={form.engineNo} onChange={handleChange} required sx={inputSx} />
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={2.5} mt={1} sx={{ width: '100%', justifyContent: 'space-between' }}>
+            <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="chassisNo" label="Chassis Number *" value={form.chassisNo} onChange={handleChange} required sx={inputSx} />
+            </Grid>
+            <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="yearOfManufacture" label="Year of Manufacture *" type="number" value={form.yearOfManufacture} onChange={handleChange} required sx={inputSx} inputProps={{ min: 1950, max: new Date().getFullYear() }} />
+            </Grid>
+            <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="engineCC" label="Engine CC" type="number" value={form.engineCC} onChange={handleChange} sx={inputSx} placeholder="e.g. 1500" />
+            </Grid>
+            <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }}>
+              <TextField fullWidth name="fuelType" label="Fuel Type *" value={form.fuelType} onChange={handleChange} required sx={inputSx} placeholder="e.g. Petrol, Diesel, Hybrid" />
+            </Grid>
+          </Grid>
+        </Box>
+
+       
+
+        <Box mt={4} display="flex" gap={2}>
+          <Button
+            type="submit" variant="contained" size="large" disabled={loading}
+            sx={{
+              px: 5, py: 1.5, fontSize: 15, fontWeight: 700,
+              background: 'linear-gradient(135deg, #990000 0%, #cc0000 100%)',
+              borderRadius: 2, boxShadow: '0 4px 20px rgba(153,0,0,0.4)',
+              '&:hover': { background: 'linear-gradient(135deg, #770000 0%, #aa0000 100%)', transform: 'translateY(-1px)' },
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Submit Valuation Request
+          </Button>
+          <Button
+            type="button" variant="outlined" size="large"
+            onClick={() => {
+              setForm({
+                registrationNo: '', assetType: '', make: '', model: '',
+                engineNo: '', chassisNo: '', yearOfManufacture: '',
+                engineCC: '', fuelType: '',
+              });
+              setImages(initialImagesState);
+            }}
+            sx={{ px: 4, py: 1.5, borderColor: 'rgba(15,23,42,0.15)', color: 'rgba(15,23,42,0.7)', '&:hover': { borderColor: '#990000', color: '#0f172a' } }}
+          >
+            Clear Form
+          </Button>
+        </Box>
+      </form>
     </Box>
   );
 };
