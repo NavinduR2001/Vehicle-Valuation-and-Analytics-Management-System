@@ -206,6 +206,29 @@ const AdminInspect = () => {
       </Box>
 
       {/* Image viewer dialog */}
+      <Dialog open={openImageIndex !== null} onClose={() => setOpenImageIndex(null)} maxWidth="xl">
+        <DialogTitle sx={{ p: 1, pr: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Typography variant="subtitle2">Image {openImageIndex !== null ? openImageIndex + 1 : ''} of {images.length}</Typography>
+            <IconButton onClick={() => setOpenImageIndex(null)} size="small" sx={{ color: 'rgba(15,23,42,0.6)' }}>
+              <Close />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent sx={{ bgcolor: '#000', p: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {openImageIndex !== null && (
+            <Box sx={{ position: 'relative', width: '90vw', height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <IconButton aria-label="previous" onClick={() => setOpenImageIndex((i) => (i > 0 ? i - 1 : images.length - 1))} sx={{ position: 'absolute', left: 8, zIndex: 10, color: '#fff' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#ffffff"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+              </IconButton>
+              <Box component="img" src={images[openImageIndex] && images[openImageIndex].startsWith('http') ? images[openImageIndex] : imageUrl(images[openImageIndex])} alt={`full-${openImageIndex}`} sx={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+              <IconButton aria-label="next" onClick={() => setOpenImageIndex((i) => (i < images.length - 1 ? i + 1 : 0))} sx={{ position: 'absolute', right: 8, zIndex: 10, color: '#fff' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#ffffff"><path d="M0 0h24v24H0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+              </IconButton>
+            </Box>
+          )}
+        </DialogContent>
+      </Dialog>
       
     </Box>
   );
