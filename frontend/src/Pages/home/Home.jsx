@@ -14,6 +14,7 @@ const Home = () => {
         <Hero />
 
         <ServicesSection />
+        <BrandSection />
       </main>
       <Footer />
     </div>
