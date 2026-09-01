@@ -303,7 +303,39 @@ const NewValuation = () => {
           </Grid>
         </Box>
 
-       
+        {/* Image Upload */}
+        <Box sx={{ ...cardSx, mt: 3 }}>
+          <Typography variant="h6" fontWeight={700} color="#0f172a" mb={1} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+            Vehicle Images
+            <Chip
+              label={`${uploadedCount}/5 Uploaded`}
+              size="small"
+              sx={{
+                bgcolor: uploadedCount >= 4 ? 'rgba(0,200,0,0.15)' : 'rgba(153,0,0,0.15)',
+                color: uploadedCount >= 4 ? '#00cc44' : '#ff4444',
+                fontWeight: 600,
+                ml: 1,
+              }}
+            />
+          </Typography>
+          <Typography variant="caption" color="rgba(15,23,42,0.55)" mb={2.5} display="block">
+            Upload images for each required angle. Front View will be set as the main display image. (JPEG, PNG, WEBP — max 10MB each)
+          </Typography>
+
+          <Grid container spacing={2}>
+            {IMAGE_SLOTS.map((slot) => (
+              <Grid item xs={12} sm={6} md={4} key={slot.key}>
+                <ImageSlotCard
+                  slot={slot}
+                  file={images[slot.key]}
+                  onFileSelect={handleSlotFileSelect}
+                  onRemove={handleSlotFileRemove}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
         <Box mt={4} display="flex" gap={2}>
           <Button
