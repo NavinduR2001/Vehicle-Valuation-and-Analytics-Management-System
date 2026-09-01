@@ -306,7 +306,7 @@ const NewValuation = () => {
         {/* Image Upload */}
         <Box sx={{ ...cardSx, mt: 3 }}>
           <Typography variant="h6" fontWeight={700} color="#0f172a" mb={1} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+            <Box sx={{ width: 4, height: 20, bgcolor: '#99000', borderRadius: 1 }} />
             Vehicle Images
             <Chip
               label={`${uploadedCount}/5 Uploaded`}
