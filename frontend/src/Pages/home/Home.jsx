@@ -15,6 +15,7 @@ const Home = () => {
 
         <ServicesSection />
         <BrandSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>
