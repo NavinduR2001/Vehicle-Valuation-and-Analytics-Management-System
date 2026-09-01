@@ -67,6 +67,17 @@ const NewAdminDashboard = () => {
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#fff' }}>
+        <DashboardSidebar
+        menuItems={menuItems}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        roleLabel="ADMIN CONTROL"
+        roleColor="#990000"
+        selectedCompany={selectedCompany}
+        setSelectedCompany={setSelectedCompany}
+        companyCounts={companyCounts}
+        totalAvailableCount={totalAvailableCount}
+      />
       
       <Box component="main" sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 }, minHeight: '100vh', bgcolor: '#fff' }}>
         <Typography variant="h4" fontWeight={800} color="#0f172a" mb={4} sx={{ borderLeft: '4px solid #990000', pl: 2 }}>
