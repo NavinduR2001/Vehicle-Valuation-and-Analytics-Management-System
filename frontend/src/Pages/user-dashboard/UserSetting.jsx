@@ -158,8 +158,37 @@ const UserSettings = () => {
                   </Button>
                 </Box>
               </Box>
-        
-        
+            {/* Change Password */}
+                  <Box sx={cardSx}>
+                    <Typography variant="h6" fontWeight={700} color="#0f172a" mb={3} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+                      Change Password
+                    </Typography>
+            
+                    {pwError && <Alert severity="error" sx={{ mb: 2, bgcolor: 'rgba(153,0,0,0.08)', color: '#b91c1c', border: '1px solid rgba(153,0,0,0.25)' }}>{pwError}</Alert>}
+            
+                    <Grid container spacing={2.5}>
+                      <Grid item xs={12}>
+                        <TextField fullWidth label="Current Password" type="password" value={passwords.currentPassword} onChange={(e) => setPasswords({ ...passwords, currentPassword: e.target.value })} sx={fieldSx} InputProps={{ startAdornment: <Lock sx={{ color: '#990000', mr: 1 }} /> }} />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField fullWidth label="New Password" type="password" value={passwords.newPassword} onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })} sx={fieldSx} />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField fullWidth label="Confirm New Password" type="password" value={passwords.confirmPassword} onChange={(e) => setPasswords({ ...passwords, confirmPassword: e.target.value })} sx={fieldSx} error={passwords.confirmPassword && passwords.newPassword !== passwords.confirmPassword} helperText={passwords.confirmPassword && passwords.newPassword !== passwords.confirmPassword ? 'Passwords do not match' : ''} FormHelperTextProps={{ sx: { color: '#ff6666' } }} />
+                      </Grid>
+                    </Grid>
+            
+                    <Box mt={3}>
+                      <Button
+                        variant="contained" startIcon={pwLoading ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : <Lock />}
+                        onClick={handlePasswordChange} disabled={pwLoading}
+                        sx={{ bgcolor: '#990000', '&:hover': { bgcolor: '#770000' }, px: 4, py: 1.2 }}
+                      >
+                        {pwLoading ? 'Changing...' : 'Change Password'}
+                      </Button>
+                    </Box>
+                  </Box>
       </Box>
     );
 
