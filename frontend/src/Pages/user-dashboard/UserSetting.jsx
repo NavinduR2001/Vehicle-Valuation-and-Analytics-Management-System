@@ -124,7 +124,40 @@ const UserSettings = () => {
             </Box>
           </Box>
         </Box>
-  
+        {/* Profile Details */}
+              <Box sx={cardSx} mb={3}>
+                <Typography variant="h6" fontWeight={700} color="#0f172a" mb={3} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+                  Personal Information
+                </Typography>
+        
+                {profileError && <Alert severity="error" sx={{ mb: 2, bgcolor: 'rgba(153,0,0,0.08)', color: '#b91c1c', border: '1px solid rgba(153,0,0,0.25)' }}>{profileError}</Alert>}
+        
+                <Grid container spacing={2.5}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField fullWidth label="First Name" value={profile.firstName} onChange={(e) => setProfile({ ...profile, firstName: e.target.value })} sx={fieldSx} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField fullWidth label="Last Name" value={profile.lastName} onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} sx={fieldSx} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField fullWidth label="Phone Number" value={profile.phone} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} sx={fieldSx} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField fullWidth label="Email" value={user?.email || ''} disabled sx={{ ...fieldSx, '& .MuiOutlinedInput-root': { ...fieldSx['& .MuiOutlinedInput-root'], color: 'rgba(15,23,42,0.45)' } }} helperText="Email cannot be changed" FormHelperTextProps={{ sx: { color: 'rgba(15,23,42,0.45)' } }} />
+                  </Grid>
+                </Grid>
+        
+                <Box mt={3}>
+                  <Button
+                    variant="contained" startIcon={profileLoading ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : <Save />}
+                    onClick={handleProfileSave} disabled={profileLoading}
+                    sx={{ bgcolor: '#990000', '&:hover': { bgcolor: '#770000' }, px: 4, py: 1.2 }}
+                  >
+                    {profileLoading ? 'Saving...' : 'Save Changes'}
+                  </Button>
+                </Box>
+              </Box>
         
         
       </Box>
