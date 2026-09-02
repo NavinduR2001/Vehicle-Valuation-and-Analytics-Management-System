@@ -70,7 +70,17 @@ const Login = () => {
             boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
           }}
         >
-          
+          {/* Logo */}
+          <Box sx={{ textAlign: 'center', mb: 4 }}>
+            <Box sx={{ padding:1, background:'white', mb:2, display:'flex', justifyContent:'center', borderRadius:1, alignItems:'center',width:'fit-content', mx:'auto' }}
+            ><img src={LogoNew} alt="Logo" style={{ height: 55, marginBottom: 10 }} /></Box>
+            <Typography variant="h5" fontWeight={700} color="#fff" sx={{ letterSpacing: 1 }}>
+              Welcome Back
+            </Typography>
+            <Typography variant="body2" color="rgba(255,255,255,0.5)" mt={0.5}>
+              Sign in to your account
+            </Typography>
+          </Box>
 
           {error && (
             <Alert severity="error" sx={{ mb: 2, bgcolor: 'rgba(153,0,0,0.1)', color: '#ff6666', border: '1px solid rgba(153,0,0,0.3)' }}>
