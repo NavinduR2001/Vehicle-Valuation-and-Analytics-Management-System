@@ -1,0 +1,7 @@
+node_modules/
+uploads/vehicles/
+uploads/profiles/
+uploads/reports/
+.env
+*.log
+.env.example
