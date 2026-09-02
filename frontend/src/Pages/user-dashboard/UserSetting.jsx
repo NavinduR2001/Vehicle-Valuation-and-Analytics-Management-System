@@ -86,7 +86,50 @@ const UserSettings = () => {
     }
   };
 
+   return (
+      <Box>
+        {/* Profile Image */}
+        <Box sx={cardSx} mb={3}>
+          <Typography variant="h6" fontWeight={700} color="#0f172a" mb={3} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ width: 4, height: 20, bgcolor: '#990000', borderRadius: 1 }} />
+            Profile Picture
+          </Typography>
+          <Box display="flex" alignItems="center" gap={3}>
+            <Box sx={{ position: 'relative' }}>
+              <Avatar
+                src={user?.profileImage ? imageUrl(user.profileImage) : undefined}
+                  sx={{ width: 90, height: 90, bgcolor: '#990000', fontSize: 32, fontWeight: 700, border: '3px solid rgba(153,0,0,0.3)' }}
+              >
+                {user ? `${(user.firstName || '')[0]}${(user.lastName || '')[0]}`.toUpperCase() : 'U'}
+              </Avatar>
+              {imgLoading && (
+                <Box sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: 'rgba(0,0,0,0.6)', borderRadius: '50%' }}>
+                  <CircularProgress size={28} sx={{ color: '#990000' }} />
+                </Box>
+              )}
+            </Box>
+            <Box>
+              <input type="file" ref={fileRef} onChange={handleImageUpload} accept="image/*" style={{ display: 'none' }} />
+              <Button
+                variant="outlined" startIcon={<CameraAlt />}
+                onClick={() => fileRef.current?.click()}
+                disabled={imgLoading}
+                sx={{ borderColor: 'rgba(15,23,42,0.15)', color: '#0f172a', '&:hover': { borderColor: '#990000', bgcolor: 'rgba(153,0,0,0.06)' } }}
+              >
+                Change Photo
+              </Button>
+              <Typography variant="caption" color="rgba(15,23,42,0.55)" display="block" mt={0.5}>
+                JPEG, PNG or WEBP. Max 5MB.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
   
+        
+        
+      </Box>
+    );
+
 };
 
 export default UserSettings;
