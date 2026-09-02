@@ -90,7 +90,179 @@ const DashboardSidebar = ({
         </Box>
       </Box>
 
+      {/* Navigation */}
+      <List sx={{ flex: 1, py: 2, px: 1, overflowY: 'auto' }}>
+        {menuItems.map((item) => {
+          const isActive = activeMenu === item.key;
 
+          if (item.key === 'available') {
+            const isMainAvailableActive = isActive && selectedCompany === 'All';
+            return (
+              <React.Fragment key={item.key}>
+                <ListItem disablePadding sx={{ mb: 0.5 }}>
+                  <ListItemButton
+                    onClick={() => {
+                      setActiveMenu('available');
+                      setSelectedCompany('All');
+                      setOpenAvailable((prev) => !prev);
+                    }}
+                    sx={{
+                      borderRadius: 2,
+                      py: 1.2,
+                      px: 2,
+                      background: isActive ? `linear-gradient(135deg, ${roleColor}14 0%, ${roleColor}08 100%)` : 'transparent',
+                      border: isActive ? `1px solid ${roleColor}22` : '1px solid transparent',
+                      '&:hover': {
+                        background: `${roleColor}10`,
+                        border: `1px solid ${roleColor}1f`,
+                      },
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <ListItemIcon sx={{ minWidth: 38, color: isActive ? roleColor : 'rgba(15, 23, 42, 0.45)' }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{
+                        fontSize: 14,
+                        fontWeight: isActive ? 700 : 400,
+                        color: isActive ? '#0f172a' : 'rgba(15, 23, 42, 0.72)',
+                      }}
+                    />
+                    <Chip
+                      label={totalAvailableCount}
+                      size="small"
+                      sx={{
+                        height: 20,
+                        fontSize: 11,
+                        fontWeight: 700,
+                        bgcolor: roleColor,
+                        color: '#ffffff',
+                        mr: 0.5,
+                      }}
+                    />
+                    {openAvailable ? (
+                      <ExpandLess fontSize="small" sx={{ color: 'rgba(15, 23, 42, 0.45)' }} />
+                    ) : (
+                      <ExpandMore fontSize="small" sx={{ color: 'rgba(15, 23, 42, 0.45)' }} />
+                    )}
+                  </ListItemButton>
+                </ListItem>
+
+                {/* Sub-menu collapse (Company-wise only, count > 0) */}
+                <Collapse in={openAvailable} timeout="auto" unmountOnExit sx={{ pl: 2, pr: 1, mb: 1 }}>
+                  <List component="div" disablePadding>
+                    {activeCompanies.map((comp) => {
+                      const isCompSelected = isActive && selectedCompany === comp.name;
+                      return (
+                        <Tooltip key={comp.name} title={`${comp.name} (${comp.count})`} placement="right" arrow>
+                          <ListItemButton
+                            onClick={() => {
+                              setActiveMenu('available');
+                              setSelectedCompany(comp.name);
+                            }}
+                            sx={{
+                              borderRadius: 1.5,
+                              py: 0.8,
+                              px: 2,
+                              mb: 0.3,
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              background: isCompSelected ? `${roleColor}1a` : 'transparent',
+                              borderLeft: isCompSelected ? `3px solid ${roleColor}` : '3px solid transparent',
+                              '&:hover': { background: 'rgba(15,23,42,0.04)' },
+                            }}
+                          >
+                            <ListItemText
+                              primary={comp.name}
+                              primaryTypographyProps={{
+                                fontSize: 12.5,
+                                fontWeight: isCompSelected ? 700 : 500,
+                                color: isCompSelected ? roleColor : 'rgba(15,23,42,0.75)',
+                                noWrap: true,
+                              }}
+                            />
+                            <Chip
+                              label={comp.count}
+                              size="small"
+                              sx={{
+                                height: 20,
+                                fontSize: 11,
+                                fontWeight: 700,
+                                bgcolor: isCompSelected ? roleColor : 'rgba(15,23,42,0.12)',
+                                color: isCompSelected ? '#ffffff' : 'rgba(15,23,42,0.7)',
+                                ml: 1,
+                              }}
+                            />
+                          </ListItemButton>
+                        </Tooltip>
+                      );
+                    })}
+                  </List>
+                </Collapse>
+              </React.Fragment>
+            );
+          }
+
+          return (
+            <ListItem key={item.key} disablePadding sx={{ mb: 0.5 }}>
+              <ListItemButton
+                onClick={() => setActiveMenu(item.key)}
+                sx={{
+                  borderRadius: 2,
+                  py: 1.2,
+                  px: 2,
+                  background: isActive ? `linear-gradient(135deg, ${roleColor}14 0%, ${roleColor}08 100%)` : 'transparent',
+                  border: isActive ? `1px solid ${roleColor}22` : '1px solid transparent',
+                  '&:hover': {
+                    background: `${roleColor}10`,
+                    border: `1px solid ${roleColor}1f`,
+                  },
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: 38, color: isActive ? roleColor : 'rgba(15, 23, 42, 0.45)' }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontWeight: isActive ? 700 : 400,
+                    color: isActive ? '#0f172a' : 'rgba(15, 23, 42, 0.72)',
+                  }}
+                />
+                {isActive && (
+                  <Box sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: roleColor }} />
+                )}
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+
+      {/* Logout */}
+      <Box sx={{ p: 2, borderTop: '1px solid rgba(15, 23, 42, 0.06)' }}>
+        <ListItemButton
+          onClick={handleLogout}
+          sx={{
+            borderRadius: 2, py: 1.2, px: 2,
+            border: '1px solid rgba(153,0,0,0.18)',
+            '&:hover': { background: 'rgba(153,0,0,0.08)', border: '1px solid rgba(153,0,0,0.3)' },
+            transition: 'all 0.2s ease',
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: 38, color: '#990000' }}>
+            <LogoutRounded />
+          </ListItemIcon>
+          <ListItemText
+            primary="Logout"
+            primaryTypographyProps={{ fontSize: 14, fontWeight: 600, color: '#990000' }}
+          />
+        </ListItemButton>
+      </Box>
     </Drawer>
   );
 };
