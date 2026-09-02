@@ -1,0 +1,22 @@
+/* App-wide styles for landing page */
+:root{
+	--primary:#B71C1C;
+	--muted:#666;
+}
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap');
+body {
+    font-family: 'Figtree', Arial, sans-serif;
+    margin: 0;
+}
+@media (min-width: 1200px) {
+    .css-5c1adp-MuiContainer-root {
+        max-width:100%;
+    }
+}
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
