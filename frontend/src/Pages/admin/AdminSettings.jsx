@@ -426,6 +426,7 @@ const AdminSettings = () => {
           <Button onClick={() => setAddCompanyOpen(false)} sx={{ color: 'rgba(15,23,42,0.6)' }}>Cancel</Button>
         </DialogActions>
       </Dialog>
+  
     </Box>
   );
 };

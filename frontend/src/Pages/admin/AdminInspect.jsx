@@ -229,6 +229,7 @@ const AdminInspect = () => {
           )}
         </DialogContent>
       </Dialog>
+      
     </Box>
   );
 };
