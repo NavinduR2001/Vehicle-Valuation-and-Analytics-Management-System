@@ -6,20 +6,20 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
 // Public pages
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import Home from "./Pages/home/Home";
+import Login from "./Pages/login/Login";
+import Register from "./Pages/register/Register";
 
 // User dashboard
-import UserDashboard from "./pages/user-dashboard/UserDashboard";
+import UserDashboard from "./Pages/user-dashboard/UserDashboard";
 
 // Manager dashboard
-import ManagerDashboard from "./pages/manager/ManagerDashboard";
-import ManagerInspect from "./pages/manager/ManagerInspect";
+import ManagerDashboard from "./Pages/manager/ManagerDashboard";
+import ManagerInspect from "./Pages/manager/ManagerInspect";
 
 // Admin dashboard
-import NewAdminDashboard from './pages/admin/NewAdminDashboard';
-import AdminInspect from './pages/admin/AdminInspect';
+import NewAdminDashboard from './Pages/admin/NewAdminDashboard';
+import AdminInspect from './Pages/admin/AdminInspect';
 
 import "./App.css";
 
