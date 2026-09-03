@@ -18,7 +18,7 @@ import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerInspect from "./Pages/Manager/ManagerInspect";
 
 // Admin dashboard
-import NewAdminDashboard from "./pages/admin/NewAdminDashboard";
+import NewAdminDashboard from "./Pages/admin/NewAdminDashboard";
 import AdminInspect from './Pages/admin/AdminInspect';
 
 import "./App.css";
