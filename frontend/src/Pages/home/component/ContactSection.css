@@ -1,0 +1,33 @@
+.contact-section{
+  padding: 4.5rem 2rem 3rem 2rem;
+  background: linear-gradient(180deg, #fbfbfb 0%, #ffffff 100%);
+}
+.contact-container{
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1.5fr 2fr ;
+  gap: 2rem;
+  align-items:start;
+}
+.contact-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.06)}
+.contact-form h3{margin:0 0 0.5rem 0;color:#990000}
+.contact-lead{color:#444;margin-bottom:1rem}
+.form-row{margin-bottom:1rem;display:flex;gap:1rem}
+.form-row input,.form-row textarea{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:10px;font-size:0.95rem}
+.form-row textarea{resize:vertical;min-height:120px}
+.btn-primary{background:#990000;color:#fff;padding:10px 18px;border-radius:40px;border:none;cursor:pointer;font-weight:600}
+.btn-primary:hover{background:#7a0000}
+.contact-details{padding:0 0.5rem}
+.contact-details h4{margin:0 0 0.5rem 0;color:#222}
+.detail-item{display:flex;gap:0.6rem;align-items:center;margin:0.6rem 0;color:black;text-decoration:none}
+.detail-item a{color:inherit;text-decoration:none}
+.detail-item svg{color:#990000}
+.map-wrap{margin-top:1rem;border-radius:12px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.08)}
+.map-wrap iframe{width:100%;height:250px;border:0;display:block}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.map-wrap iframe{height:200px}}
+
+.contact-section.visible{animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
