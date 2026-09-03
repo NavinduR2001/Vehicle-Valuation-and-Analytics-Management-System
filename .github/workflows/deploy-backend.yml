@@ -1,13 +1,12 @@
 name: Deploy Backend to Azure App Service
 
 on:
+  # Triggers when any PR is merged into master OR direct push to master
   push:
     branches:
       - master
-    paths:
-      - 'backend/**'
-      - '.github/workflows/deploy-backend.yml'
 
+  # Also trigger manually from GitHub Actions tab
   workflow_dispatch:
 
 jobs:
