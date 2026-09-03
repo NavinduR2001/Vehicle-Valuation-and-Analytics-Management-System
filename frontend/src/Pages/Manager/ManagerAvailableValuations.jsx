@@ -276,7 +276,17 @@ const ManagerAvailableValuations = () => {
         </DialogActions>
       </Dialog>
 
-   
+      {/* Fullscreen Gallery */}
+      <Dialog open={!!galleryImg} onClose={() => setGalleryImg(null)} maxWidth="lg" fullWidth
+        PaperProps={{ sx: { bgcolor: 'rgba(0,0,0,0.95)', border: '1px solid rgba(255,255,255,0.1)' } }}
+      >
+        <DialogContent sx={{ p: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+          <IconButton onClick={() => setGalleryImg(null)} sx={{ position: 'absolute', top: 8, right: 8, color: '#fff', bgcolor: 'rgba(0,0,0,0.5)', zIndex: 1 }}>
+            <Close />
+          </IconButton>
+          <Box component="img" src={galleryImg} alt="Full" sx={{ maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain', borderRadius: 2 }} />
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

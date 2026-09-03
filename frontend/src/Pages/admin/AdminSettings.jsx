@@ -323,6 +323,109 @@ const AdminSettings = () => {
           )}
       </Box>
 
+      {/* Add Manager Dialog */}
+      <Dialog open={addManagerOpen} onClose={() => setAddManagerOpen(false)} maxWidth="sm" fullWidth
+        PaperProps={{ sx: { bgcolor: '#ffffff', color: '#0f172a', border: '1px solid rgba(15,23,42,0.08)', borderRadius: 3 } }}>
+        <DialogTitle sx={{ borderBottom: '1px solid rgba(15,23,42,0.08)', display: 'flex', justifyContent: 'space-between' }}>
+          <Typography fontWeight={700} color="#0f172a">Add New Manager</Typography>
+          <IconButton onClick={() => setAddManagerOpen(false)} sx={{ color: 'rgba(15,23,42,0.55)' }}><Close /></IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ pt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}><TextField fullWidth label="First Name *" value={managerForm.firstName} onChange={(e) => setManagerForm({ ...managerForm, firstName: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={6}><TextField fullWidth label="Last Name *" value={managerForm.lastName} onChange={(e) => setManagerForm({ ...managerForm, lastName: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={12}><TextField fullWidth label="Email *" type="email" value={managerForm.email} onChange={(e) => setManagerForm({ ...managerForm, email: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={6}><TextField fullWidth label="Phone *" value={managerForm.phone} onChange={(e) => setManagerForm({ ...managerForm, phone: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={6}><TextField fullWidth label="NIC / ID Number *" value={managerForm.idCardNumber} onChange={(e) => setManagerForm({ ...managerForm, idCardNumber: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={12}><TextField fullWidth label="Branch" value={managerForm.branch} onChange={(e) => setManagerForm({ ...managerForm, branch: e.target.value })} sx={fieldSx} placeholder="e.g. Colombo Main Branch" /></Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Password *"
+                type={showPassword ? 'text' : 'password'}
+                value={managerForm.password}
+                onChange={(e) => setManagerForm({ ...managerForm, password: e.target.value })}
+                sx={fieldSx}
+                helperText="Minimum 8 characters"
+                FormHelperTextProps={{ sx: { color: 'rgba(15,23,42,0.45)' } }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        edge="end"
+                        size="small"
+                        sx={{ color: 'rgba(15,23,42,0.45)' }}
+                      >
+                        {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={managerForm.canFinalApprove}
+                    onChange={(e) => setManagerForm({ ...managerForm, canFinalApprove: e.target.checked })}
+                    sx={{
+                      '& .MuiSwitch-switchBase.Mui-checked': { color: '#990000' },
+                      '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { bgcolor: '#990000' },
+                    }}
+                  />
+                }
+                label={
+                  <Typography fontSize={13} fontWeight={600} color="#0f172a">
+                    Allow Manager to give Final Approval (Skip Admin Approval)
+                  </Typography>
+                }
+              />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions sx={{ borderTop: '1px solid rgba(15,23,42,0.06)', px: 3, py: 2 }}>
+          <Button variant="contained" onClick={handleAddManager} disabled={managerSaving}
+            sx={{ bgcolor: '#990000', '&:hover': { bgcolor: '#770000' }, fontWeight: 700 }}>
+            {managerSaving ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : 'Create Manager'}
+          </Button>
+          <Button onClick={() => setAddManagerOpen(false)} sx={{ color: 'rgba(15,23,42,0.6)' }}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
+      {/* Confirmation Dialog (themed) */}
+      <Dialog open={confirmOpen} onClose={() => setConfirmOpen(false)} maxWidth="xs" fullWidth
+        PaperProps={{ sx: { bgcolor: '#ffffff', color: '#0f172a', border: '1px solid rgba(15,23,42,0.08)', borderRadius: 2 } }}>
+        <DialogTitle sx={{ color: '#0f172a', fontWeight: 700 }}>{confirmTitle}</DialogTitle>
+        <DialogActions sx={{ px: 3, py: 2 }}>
+          <Button onClick={() => setConfirmOpen(false)} sx={{ color: 'rgba(15,23,42,0.7)' }}>Cancel</Button>
+          <Button variant="contained" onClick={() => { confirmCallback(); }} sx={{ bgcolor: '#990000', '&:hover': { bgcolor: '#770000' } }}>Confirm</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Add/Edit Company Dialog */}
+      <Dialog open={addCompanyOpen} onClose={() => setAddCompanyOpen(false)} maxWidth="sm" fullWidth
+        PaperProps={{ sx: { bgcolor: '#ffffff', color: '#0f172a', border: '1px solid rgba(15,23,42,0.08)', borderRadius: 3 } }}>
+        <DialogTitle sx={{ borderBottom: '1px solid rgba(15,23,42,0.08)', display: 'flex', justifyContent: 'space-between' }}>
+          <Typography fontWeight={700} color="#0f172a">{editCompany ? 'Edit Company' : 'Add Company'}</Typography>
+          <IconButton onClick={() => setAddCompanyOpen(false)} sx={{ color: 'rgba(15,23,42,0.55)' }}><Close /></IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ pt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}><TextField fullWidth label="Company Name *" value={companyForm.name} onChange={(e) => setCompanyForm({ ...companyForm, name: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={12} sm={6}><TextField fullWidth label="Contact Number" value={companyForm.contactNo} onChange={(e) => setCompanyForm({ ...companyForm, contactNo: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={12} sm={6}><TextField fullWidth label="Valuation Fee (Rs) *" type="number" value={companyForm.valuationFee} onChange={(e) => setCompanyForm({ ...companyForm, valuationFee: e.target.value })} sx={fieldSx} /></Grid>
+            <Grid item xs={12}><TextField fullWidth label="Address" multiline rows={2} value={companyForm.address} onChange={(e) => setCompanyForm({ ...companyForm, address: e.target.value })} sx={fieldSx} /></Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions sx={{ borderTop: '1px solid rgba(15,23,42,0.06)', px: 3, py: 2 }}>
+          <Button variant="contained" onClick={handleCompanySave} disabled={companySaving}
+            sx={{ bgcolor: '#990000', '&:hover': { bgcolor: '#770000' }, fontWeight: 700 }}>
+            {companySaving ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : editCompany ? 'Update' : 'Add Company'}
+          </Button>
+          <Button onClick={() => setAddCompanyOpen(false)} sx={{ color: 'rgba(15,23,42,0.6)' }}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
   
     </Box>
   );

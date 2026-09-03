@@ -12,7 +12,6 @@ const Home = () => {
       <Navbar />
       <main>
         <Hero />
-
         <ServicesSection />
         <BrandSection />
         <ContactSection />

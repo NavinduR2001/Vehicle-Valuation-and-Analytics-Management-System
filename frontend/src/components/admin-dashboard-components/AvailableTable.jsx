@@ -346,4 +346,17 @@ function AvailableTable() {
   )
 }
 
-export default AvailableTable
+export default AvailableTableoup>
+                  </StyledTableCell>
+                </StyledTableRow>
+              );
+            })
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+export { vehicles };
+export default AvailableTable;

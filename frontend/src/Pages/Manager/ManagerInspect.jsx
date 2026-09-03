@@ -187,6 +187,7 @@ const ManagerInspect = () => {
           );
         })()}
       </Grid>
+      
       <Dialog open={openImageIndex !== null} onClose={() => setOpenImageIndex(null)} maxWidth="xl" fullWidth>
         <DialogTitle sx={{ p: 1, pr: 2, borderBottom: '1px solid rgba(15,23,42,0.08)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
