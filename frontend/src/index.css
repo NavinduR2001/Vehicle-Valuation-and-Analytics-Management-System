@@ -1,6 +1,36 @@
 :root {
-  font-family: Figtree, sans-serif;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color-scheme: dark light;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for dark dashboard pages */
+.dark-scroll::-webkit-scrollbar { width: 6px; }
+.dark-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+.dark-scroll::-webkit-scrollbar-thumb { background: rgba(153,0,0,0.4); border-radius: 3px; }
+.dark-scroll::-webkit-scrollbar-thumb:hover { background: #990000; }
+
+/* MUI Table overrides for dark mode */
+.MuiTableCell-root {
+  border-bottom-color: rgba(255,255,255,0.05) !important;
+}
+
+/* Smooth transitions */
+a { text-decoration: none; }
